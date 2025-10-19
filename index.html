@@ -5,80 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akash Chikane - Software Engineer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
     <div class="container">
+        <!-- Hero Section -->
         <header class="hero">
-            <div class="profile-section">
-                <div class="avatar">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Cartoon dev character -->
-                        <circle cx="100" cy="100" r="90" fill="#4A90E2"/>
-                        <!-- Face -->
-                        <circle cx="100" cy="95" r="60" fill="#FFD6A5"/>
-                        <!-- Glasses -->
-                        <rect x="60" y="80" width="35" height="25" rx="5" fill="none" stroke="#333" stroke-width="3"/>
-                        <rect x="105" y="80" width="35" height="25" rx="5" fill="none" stroke="#333" stroke-width="3"/>
-                        <line x1="95" y1="92" x2="105" y2="92" stroke="#333" stroke-width="3"/>
-                        <!-- Eyes -->
-                        <circle cx="77" cy="92" r="5" fill="#333"/>
-                        <circle cx="123" cy="92" r="5" fill="#333"/>
-                        <!-- Smile -->
-                        <path d="M 75 110 Q 100 120 125 110" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Hair -->
-                        <path d="M 45 75 Q 40 50 60 45 T 100 40 T 140 45 Q 160 50 155 75" fill="#2C3E50"/>
-                        <!-- Laptop at bottom -->
-                        <rect x="50" y="155" width="100" height="3" fill="#34495E"/>
-                        <rect x="60" y="140" width="80" height="15" fill="#34495E" rx="2"/>
-                        <rect x="63" y="142" width="74" height="10" fill="#2ECC71"/>
-                    </svg>
+            <div class="hero-content">
+                <div class="avatar-wrapper">
+                    <div class="avatar-glow"></div>
+                    <div class="avatar">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="100" cy="100" r="90" fill="url(#bgGradient)"/>
+                            <circle cx="100" cy="95" r="60" fill="#FFE5CC"/>
+                            <rect x="60" y="80" width="35" height="25" rx="5" fill="none" stroke="#2C3E50" stroke-width="3"/>
+                            <rect x="105" y="80" width="35" height="25" rx="5" fill="none" stroke="#2C3E50" stroke-width="3"/>
+                            <line x1="95" y1="92" x2="105" y2="92" stroke="#2C3E50" stroke-width="3"/>
+                            <circle cx="77" cy="92" r="5" fill="#2C3E50"/>
+                            <circle cx="123" cy="92" r="5" fill="#2C3E50"/>
+                            <path d="M 75 110 Q 100 125 125 110" fill="none" stroke="#2C3E50" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M 45 75 Q 40 50 60 45 T 100 40 T 140 45 Q 160 50 155 75" fill="#2C3E50"/>
+                            <rect x="50" y="155" width="100" height="3" fill="#34495E"/>
+                            <rect x="60" y="140" width="80" height="15" fill="#34495E" rx="2"/>
+                            <rect x="63" y="142" width="74" height="10" fill="#4ECDC4"/>
+                            <circle cx="69" cy="147" r="1.5" fill="#2ECC71"/>
+                            <circle cx="74" cy="147" r="1.5" fill="#F39C12"/>
+                            <circle cx="79" cy="147" r="1.5" fill="#E74C3C"/>
+                        </svg>
+                    </div>
                 </div>
-                <h1>Akash Chikane</h1>
-                <p class="tagline">Software Engineer • Full Stack Developer</p>
-                <div class="experience">
-                    <span class="badge">Since 2018</span>
+                <div class="hero-text">
+                    <h1 class="glitch" data-text="Akash Chikane">Akash Chikane</h1>
+                    <div class="title-animation">
+                        <span class="typing-text">Software Engineer</span>
+                        <span class="cursor">|</span>
+                    </div>
+                    <p class="hero-subtitle">Crafting elegant solutions with code since 2018</p>
+                    <div class="hero-badges">
+                        <span class="badge pulse">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <circle cx="8" cy="8" r="3"/>
+                            </svg>
+                            Available for Projects
+                        </span>
+                        <span class="badge">7+ Years Experience</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
                 </div>
             </div>
         </header>
 
+        <!-- About Section -->
         <section class="about">
-            <h2>About Me</h2>
-            <p>
-                Passionate software engineer with expertise across multiple programming languages and technologies.
-                I love building things and sharing my projects with the community.
-            </p>
-            <div class="skills">
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Golang</span>
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">C</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <p class="about-text">
+                    Passionate software engineer with expertise across multiple programming languages and technologies.
+                    I thrive on solving complex problems and building innovative solutions that make a difference.
+                    Always learning, always growing, always coding.
+                </p>
+                <div class="skills-container">
+                    <h3 class="skills-title">Tech Stack</h3>
+                    <div class="skills">
+                        <div class="skill-tag" data-skill="js">
+                            <span class="skill-icon">⚡</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-tag" data-skill="go">
+                            <span class="skill-icon">🚀</span>
+                            <span>Golang</span>
+                        </div>
+                        <div class="skill-tag" data-skill="cpp">
+                            <span class="skill-icon">⚙️</span>
+                            <span>C++</span>
+                        </div>
+                        <div class="skill-tag" data-skill="java">
+                            <span class="skill-icon">☕</span>
+                            <span>Java</span>
+                        </div>
+                        <div class="skill-tag" data-skill="c">
+                            <span class="skill-icon">🔧</span>
+                            <span>C</span>
+                        </div>
+                        <div class="skill-tag" data-skill="python">
+                            <span class="skill-icon">🐍</span>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-tag" data-skill="html">
+                            <span class="skill-icon">🌐</span>
+                            <span>HTML</span>
+                        </div>
+                        <div class="skill-tag" data-skill="css">
+                            <span class="skill-icon">🎨</span>
+                            <span>CSS</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Projects Section -->
         <section class="projects">
-            <h2>My GitHub Pages</h2>
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2>Featured Projects</h2>
+            </div>
             <div id="loading" class="loading">
                 <div class="spinner"></div>
-                <p>Loading projects...</p>
+                <p>Loading amazing projects...</p>
             </div>
             <div id="projects-grid" class="projects-grid"></div>
             <div id="error-message" class="error-message" style="display: none;"></div>
         </section>
 
+        <!-- Footer -->
         <footer>
-            <div class="social-links">
-                <a href="https://github.com/AkashChikane" target="_blank" class="github-link">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    GitHub
-                </a>
+            <div class="footer-content">
+                <div class="footer-branding">
+                    <h3>Let's Connect</h3>
+                    <p>Feel free to reach out for collaborations or just a friendly chat!</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/AkashChikane" target="_blank" class="social-link github-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; <span id="year"></span> Akash Chikane. Crafted with 💜 and ☕</p>
+                </div>
             </div>
-            <p>&copy; <span id="year"></span> Akash Chikane. All rights reserved.</p>
         </footer>
     </div>
 

@@ -4,6 +4,71 @@ const GITHUB_USERNAME = 'AkashChikane';
 // Set current year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Typing animation effect
+function typeWriter() {
+    const texts = ['Software Engineer', 'Full Stack Developer', 'Problem Solver', 'Code Enthusiast'];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseTime = 2000;
+    
+    const typingElement = document.querySelector('.typing-text');
+    
+    function type() {
+        const currentText = texts[textIndex];
+        
+        if (!isDeleting) {
+            typingElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+            
+            if (charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(type, pauseTime);
+                return;
+            }
+        } else {
+            typingElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+            
+            if (charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+        }
+        
+        setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    }
+    
+    type();
+}
+
+// Intersection Observer for animations
+function observeElements() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe sections
+    document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(section);
+    });
+}
+
 // Function to fetch GitHub repositories
 async function fetchGitHubPages() {
     const loadingElement = document.getElementById('loading');
@@ -32,21 +97,30 @@ async function fetchGitHubPages() {
 
         if (pagesRepos.length === 0) {
             errorMessage.style.display = 'block';
-            errorMessage.textContent = 'No GitHub Pages found yet. Start creating some awesome projects!';
+            errorMessage.textContent = '🚀 No GitHub Pages found yet. Start creating some awesome projects!';
             return;
         }
 
-        // Create project cards
-        pagesRepos.forEach(repo => {
+        // Create project cards with staggered animation
+        pagesRepos.forEach((repo, index) => {
             const card = createProjectCard(repo);
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
             projectsGrid.appendChild(card);
+            
+            // Staggered animation
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
         });
 
     } catch (error) {
         console.error('Error fetching GitHub Pages:', error);
         loadingElement.style.display = 'none';
         errorMessage.style.display = 'block';
-        errorMessage.textContent = 'Failed to load projects. Please try again later.';
+        errorMessage.textContent = '⚠️ Failed to load projects. Please try again later.';
     }
 }
 
@@ -67,14 +141,16 @@ function createProjectCard(repo) {
     const icon = getProjectIcon(repo);
 
     // Get description or default text
-    const description = repo.description || 'A GitHub Pages project';
+    const description = repo.description || 'A GitHub Pages project showcasing innovation and creativity';
 
     // Create card HTML
     card.innerHTML = `
         <div class="project-icon">${icon}</div>
         <h3>${repo.name}</h3>
         <p>${description}</p>
-        <a href="${pagesUrl}" target="_blank" class="project-link">Visit Site →</a>
+        <a href="${pagesUrl}" target="_blank" class="project-link">
+            Visit Site →
+        </a>
         <div class="project-meta">
             ${repo.language ? `<span class="meta-tag">${repo.language}</span>` : ''}
             ${repo.stargazers_count > 0 ? `<span class="meta-tag">⭐ ${repo.stargazers_count}</span>` : ''}
@@ -133,21 +209,68 @@ function getProjectIcon(repo) {
     return '🚀';
 }
 
+// Parallax effect for avatar
+function parallaxEffect() {
+    const avatar = document.querySelector('.avatar-wrapper');
+    if (!avatar) return;
+    
+    window.addEventListener('mousemove', (e) => {
+        const x = (e.clientX - window.innerWidth / 2) / 50;
+        const y = (e.clientY - window.innerHeight / 2) / 50;
+        avatar.style.transform = `translate(${x}px, ${y}px)`;
+    });
+}
+
+// Smooth scroll for anchor links
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
+    // Start typing animation
+    typeWriter();
+    
+    // Initialize parallax
+    parallaxEffect();
+    
+    // Initialize smooth scroll
+    initSmoothScroll();
+    
+    // Observe elements for animations
+    observeElements();
+    
+    // Fetch GitHub Pages
     fetchGitHubPages();
-});
-
-// Add smooth scroll behavior
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+    
+    // Add scroll indicator hide on scroll
+    let lastScroll = 0;
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (scrollIndicator) {
+            if (currentScroll > 100) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.pointerEvents = 'none';
+            } else {
+                scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.pointerEvents = 'auto';
+            }
         }
+        
+        lastScroll = currentScroll;
     });
 });
