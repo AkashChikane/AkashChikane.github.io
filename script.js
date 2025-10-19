@@ -20,8 +20,12 @@ async function fetchGitHubPages() {
 
         const repos = await response.json();
         
-        // Filter repositories that have GitHub Pages enabled
-        const pagesRepos = repos.filter(repo => repo.has_pages && !repo.private);
+        // Filter repositories that have GitHub Pages enabled and exclude the main portfolio site
+        const pagesRepos = repos.filter(repo => 
+            repo.has_pages && 
+            !repo.private && 
+            repo.name !== `${GITHUB_USERNAME}.github.io`
+        );
         
         // Hide loading spinner
         loadingElement.style.display = 'none';
