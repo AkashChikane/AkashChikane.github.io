@@ -4,6 +4,31 @@ const GITHUB_USERNAME = 'AkashChikane';
 // Set current year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Theme Toggle Functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    // Check for saved theme preference or default to dark mode
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    body.classList.add(`${savedTheme}-mode`);
+    
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', () => {
+        const isDark = body.classList.contains('dark-mode');
+        
+        if (isDark) {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
+
 // Typing animation effect
 function typeWriter() {
     const texts = ['Software Engineer', 'Full Stack Developer', 'Problem Solver', 'Code Enthusiast'];
@@ -239,6 +264,9 @@ function initSmoothScroll() {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize theme toggle
+    initThemeToggle();
+    
     // Start typing animation
     typeWriter();
     
